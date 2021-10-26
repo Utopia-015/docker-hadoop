@@ -1,5 +1,5 @@
 #!/usr/bin/expect
-spawn ssh-copy-id -i /home/hadoop/.ssh/id_rsa hadoop@$env(HOSTNAME)
+spawn ssh-copy-id -i /home/$env(USER)/.ssh/id_rsa $env(USER)@$env(HOSTNAME)
 expect "*yes/no"
 send "yes\n"
 expect "*password"

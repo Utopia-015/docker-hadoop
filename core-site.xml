@@ -1,0 +1,12 @@
+<configuration>
+<!-- HDFS hostname and port -->
+<property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://master:9000</value>
+</property>
+<!-- Hadoop temp directory -->
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>file:///home/hadoop/tmp</value>
+</property>
+</configuration>

@@ -1,0 +1,18 @@
+<configuration>
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>file:///home/hadoop/bigdata/data/namenode</value>
+	</property>
+	<property>
+		<name>dfs.datanode.data.dir</name>
+		<value>file:///home/hadoop/bigdata/data/datanode/</value>
+	</property>
+	<property>
+		<name>dfs.replication</name>
+		<value>3</value>
+	</property>
+	<property>
+		<name>dfs.namenode.secondary.http-address</name>
+		<value>master:9001</value>
+	</property>
+</configuration>
