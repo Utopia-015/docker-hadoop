@@ -1,6 +1,6 @@
 FROM centos:8
 
-ADD hadoop-3.2.2.tar.gz spark-3.1.2-bin-hadoop3.2.tar.gz /usr/local/
+ADD hadoop-3.2.2.tar.gz spark-3.1.2-bin-hadoop3.2.tgz /usr/local/
 
 COPY copyid.sh core-site.xml hdfs-site.xml mapred-site.xml set-env.sh useradd.sh yarn-site.xml /root/
 
