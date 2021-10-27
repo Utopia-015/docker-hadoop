@@ -99,10 +99,32 @@ $ docker exec -ti master bash
 $ hdfs namenode -format
 $ start-dfs.sh && start-yarn.sh
 ```
+使用 `jps` 查看进程
+```
+$ jps
+866 ResourceManager
+1172 Jps
+408 NameNode
+634 SecondaryNameNode
+```
 3. 切换为 spark 用户
 ```
 $ exit
 # su spark
 $ start-master.sh && start-workers.sh
 ```
+使用 `jps` 查看进程
+```
+$ jps
+1299 Worker
+1209 Master
+1359 Jps
+```
 4. 这样就集群就启动完成了，进行管理的话切换为对应的用户即可
+5. 要访问 Web UI 仅能通过 Linux DE 内的浏览器
+* Hadoop Web UI
+![Hadoop Web UI](hadoop9870.png)
+* Hadoop Applications
+![Hadoop Applications](hadoop_app.png)
+* Spark Web UI
+![Spark Web UI](spark8080.png)
