@@ -34,7 +34,7 @@ cp $SPARK_HOME/conf/workers.template $SPARK_HOME/conf/workers
 sed -i '/localhost/d' $SPARK_HOME/conf/workers
 
 echo -e "master\nslave1\nslave2" >> $SPARK_HOME/conf/workers
-echo -e "master\nslave1\nslave2" > $HADOOP_HOME/etc/hadoop/workers
+echo -e "slave1\nslave2" > $HADOOP_HOME/etc/hadoop/workers
 
 sed -i '/configuration>/d' $HADOOP_HOME/etc/hadoop/core-site.xml \
 			   $HADOOP_HOME/etc/hadoop/hdfs-site.xml \
