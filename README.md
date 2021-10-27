@@ -4,7 +4,7 @@
 
 ### 安装 docker
 
-可以使用官方的安装脚本，另外可以通过`--mirror`选项使用国内源进行安装
+可以使用官方的安装脚本，另外可以通过 `--mirror` 选项使用国内源进行安装
 ```
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
@@ -33,7 +33,7 @@ $ cd docker-hadoop
 ### 准备工作
 
 1. 下载 [Hadoop3.2.2](https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz) 和 [Spark3.1.2](https://www.apache.org/dyn/closer.lua/spark/spark-3.1.2/spark-3.1.2-bin-hadoop3.2.tgz) 二进制包到项目目录下
-2. 拉取docker官方仓库`centos:8`镜像
+2. 拉取docker官方仓库 `centos:8` 镜像
 ```
 $ docker pull centos:8
 ```
@@ -41,6 +41,21 @@ $ docker pull centos:8
 1. 构建临时镜像
 ```
 $ docker build -t hadoop:tmp .
+```
+出现类似这样的提示就是构建好了
+```
+Removing intermediate container 04557222c273
+ ---> 5ba693674afc
+Successfully built 5ba693674afc
+Successfully tagged hadoop:tmp
+```
+可以使用 `docker images` 查看构建好的镜像
+```
+$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hadoop        tmp       5ba693674afc   3 minutes ago   2.89GB
+hello-world   latest    feb5d9fea6a5   4 weeks ago     13.3kB
+centos        8         5d0da3dc9764   5 weeks ago     231MB
 ```
 2. 使用临时镜像创建容器
 ```
@@ -56,9 +71,21 @@ $ docker exec -ti tmp bash
 ```
 $ docker commit tmp hadoop:cluster
 ```
+这时可以删除临时容器了
+```
+$ docker container rm tmp
+```
 5. 使用脚本搭建网络并启动三个容器
 ```
 $ ./start.sh
+```
+接着可以查看启动好的容器
+```
+$ docker container ls
+CONTAINER ID   IMAGE            COMMAND            CREATED         STATUS         PORTS     NAMES
+b6afbe79cc8a   hadoop:cluster   "/usr/sbin/init"   4 minutes ago   Up 4 minutes             slave2
+564b158cb7ad   hadoop:cluster   "/usr/sbin/init"   4 minutes ago   Up 4 minutes             slave1
+2a4c9633573f   hadoop:cluster   "/usr/sbin/init"   4 minutes ago   Up 4 minutes             master
 ```
 6. 完成！
 ### 启动 Hadoop 和 Spark
@@ -74,7 +101,7 @@ $ start-dfs.sh && start-yarn.sh
 ```
 3. 切换为 spark 用户
 ```
-$ logout
+$ exit
 # su spark
 $ start-master.sh && start-workers.sh
 ```
