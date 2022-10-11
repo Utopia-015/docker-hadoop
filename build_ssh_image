@@ -1,0 +1,11 @@
+FROM centos:8
+RUN set -ex; buildDeps='python3 openssh-clients openssh-server passwd sudo expect' \
+    && sed -i -e '/^mi/s/^/#/' -e '/^#base/{s/#//;s/mirror/vault/}' /etc/yum.repos.d/* \
+    && yum install -y ${buildDeps} \
+    && yum clean all \
+    && systemctl enable sshd \
+    && useradd -m admin \
+    && ( echo 111111 ; sleep 1 ; echo 111111 )|passwd admin \
+    && sed -i '100a admin ALL=(ALL) NOPASSWD:ALL' /etc/sudoers \
+    && su admin -c "mkdir /home/admin/.ssh && ssh-keygen -t rsa -P '' -f /home/admin/.ssh/id_rsa" \
+    && cat /home/admin/.ssh/id_rsa.pub > /home/admin/.ssh/authorized_keys
